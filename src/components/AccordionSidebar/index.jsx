@@ -46,7 +46,6 @@ const StyledTreeWrapper = styled.div`
   }
   .rstcustom__node {
     border-bottom: 1px solid #e9eaeb;
-    height: 40px !important;
   }
   .rowInfo {
     display: flex;
