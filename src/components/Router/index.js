@@ -1,23 +1,20 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Header from "components/Header";
-import Router from "components/Router";
+import Demo from "pages/Demo";
+
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex",
-    minHeight: "100vh",
-    flexDirection: "column",
+    flexGrow: 1,
   },
 }));
 
-const App = () => {
+const Router = () => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <Header />
-      <Router />
+      <Demo />
     </div>
   );
 };
 
-export default App;
+export default Router;
