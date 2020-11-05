@@ -17,15 +17,13 @@ const AccordionSidebar = ({ events = [] }) => {
         onChange={(treeData) => handleEventSwitch(treeData)}
         theme={FileExplorerTheme}
         generateNodeProps={(rowInfo) => {
-          console.log("row", rowInfo);
           return {
-            style: {
-              // paddingLeft: 25,
-            },
             title: (
               <div
                 className={`rowInfo ${
-                  !rowInfo.node.children && "rowInfo-last-child"
+                  !rowInfo?.node?.children || !rowInfo?.node?.children.length
+                    ? "rowInfo-last-child"
+                    : "rowInfo-parent"
                 }`}
               >
                 {rowInfo.node.title}
@@ -43,14 +41,40 @@ const StyledTreeWrapper = styled.div`
   height: calc(100vh - 64px);
   .rstcustom__rowContents {
     box-shadow: none;
+    background-color: transparent;
+  }
+
+  .rstcustom__collapseButton {
+    transform: translate(-55%, -135%);
+    font-size: 28px;
+    &:before {
+      content: "⌄";
+      color: #adaeaf;
+    }
+  }
+  .rstcustom__expandButton {
+    transform: translate(-60%, -110%);
+    font-size: 28px;
+    &:before {
+      content: "⌄";
+      color: #adaeaf;
+      display: inline-block;
+      transform: rotate(-90deg);
+    }
+  }
+  .rstcustom__highlight {
+    background-color: rgba(254, 172, 49, 0.15);
   }
   .rstcustom__node {
     border-bottom: 1px solid #e9eaeb;
+    height: 45px !important;
+    position: relative !important;
+    top: unset !important;
   }
   .rowInfo {
     display: flex;
     align-items: center;
-    font-weight: 600;
+    font-weight: 400;
     color: #797b7d;
     font-family: Lato, "Helvetica Neue", Arial, Helvetica, sans-serif;
   }
@@ -61,6 +85,9 @@ const StyledTreeWrapper = styled.div`
       margin-right: 10px;
       font-size: 10px;
     }
+  }
+  .rowInfo-parent {
+    font-weight: 600;
   }
   .ReactVirtualized__Grid {
     &:focus {
