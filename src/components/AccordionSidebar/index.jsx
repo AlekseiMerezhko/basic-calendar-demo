@@ -16,6 +16,7 @@ const AccordionSidebar = ({ events = [] }) => {
         treeData={events}
         onChange={(treeData) => handleEventSwitch(treeData)}
         theme={FileExplorerTheme}
+        isVirtualized={false}
         generateNodeProps={(rowInfo) => {
           return {
             title: (
