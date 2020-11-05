@@ -7,6 +7,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     minHeight: "100vh",
     flexDirection: "column",
+    fontFamily: `Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif`,
   },
 }));
 

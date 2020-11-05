@@ -12,11 +12,13 @@ const AccordionSidebar = ({ events = [] }) => {
   };
   return (
     <StyledTreeWrapper>
+      <SortableTreeHeader>Name</SortableTreeHeader>
       <SortableTree
         treeData={events}
         onChange={(treeData) => handleEventSwitch(treeData)}
         theme={FileExplorerTheme}
         isVirtualized={false}
+        scaffoldBlockPxWidth={28}
         generateNodeProps={(rowInfo) => {
           return {
             title: (
@@ -37,6 +39,12 @@ const AccordionSidebar = ({ events = [] }) => {
   );
 };
 
+const SortableTreeHeader = styled.div`
+  padding: 15px 7px;
+  background: #f3f4f5;
+  color: #667280;
+`;
+
 const StyledTreeWrapper = styled.div`
   width: 30%;
   height: calc(100vh - 64px);
@@ -46,21 +54,23 @@ const StyledTreeWrapper = styled.div`
   }
 
   .rstcustom__collapseButton {
-    transform: translate(-55%, -135%);
+    transform: translate(-68%, -135%);
     font-size: 28px;
     &:before {
       content: "⌄";
       color: #adaeaf;
+      position: initial;
     }
   }
   .rstcustom__expandButton {
-    transform: translate(-60%, -110%);
+    transform: translate(-73%, -110%);
     font-size: 28px;
     &:before {
       content: "⌄";
       color: #adaeaf;
       display: inline-block;
       transform: rotate(-90deg);
+      position: initial;
     }
   }
   .rstcustom__highlight {
@@ -80,11 +90,16 @@ const StyledTreeWrapper = styled.div`
     font-family: Lato, "Helvetica Neue", Arial, Helvetica, sans-serif;
   }
   .rowInfo-last-child {
+    position: relative;
     &:before {
       content: "•";
       color: #adaeaf;
       margin-right: 10px;
       font-size: 10px;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      left: -14px;
     }
   }
   .rowInfo-parent {
