@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import SortableTree from "react-sortable-tree";
 import FileExplorerTheme from "react-sortable-tree-theme-minimal";
 import styled from "styled-components";
@@ -7,11 +7,12 @@ import { switchEvent } from "actions/eventsActions";
 
 const AccordionSidebar = ({ events = [] }) => {
   const dispatch = useDispatch();
+  const { isSidebarOpen } = useSelector((state) => state.sidebar);
   const handleEventSwitch = (events) => {
     dispatch(switchEvent({ events }));
   };
   return (
-    <StyledTreeWrapper>
+    <StyledTreeWrapper isSidebarOpen={isSidebarOpen}>
       <SortableTreeHeader>Name</SortableTreeHeader>
       <SortableTree
         treeData={events}
@@ -46,8 +47,12 @@ const SortableTreeHeader = styled.div`
 `;
 
 const StyledTreeWrapper = styled.div`
-  width: 30%;
-  height: calc(100vh - 64px);
+  position: fixed;
+  transition: all 0.5s ease-out;
+  width: 500px;
+  left: ${(props) => (props.isSidebarOpen ? "0" : "-520px")};
+  border-right: 5px solid #e9eaeb;
+  height: 100%;
   .rstcustom__rowContents {
     box-shadow: none;
     background-color: transparent;

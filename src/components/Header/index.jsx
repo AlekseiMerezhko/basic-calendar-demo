@@ -1,10 +1,13 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import { useDispatch } from "react-redux";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
+
+import { switchSidebarStatusEvent } from "actions/sidebarActions";
 
 const useStyles = makeStyles((theme) => ({
   menuButton: {
@@ -20,6 +23,11 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+  const handleSwichSidebarStatus = () => {
+    dispatch(switchSidebarStatusEvent());
+  };
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.colorPrimary}>
@@ -27,6 +35,7 @@ const Header = () => {
           <IconButton
             edge="start"
             className={classes.menuButton}
+            onClick={handleSwichSidebarStatus}
             color="inherit"
             aria-label="menu"
           >
