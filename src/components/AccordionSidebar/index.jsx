@@ -48,11 +48,13 @@ const SortableTreeHeader = styled.div`
 
 const StyledTreeWrapper = styled.div`
   position: fixed;
+  z-index: 10;
   transition: all 0.5s ease-out;
   width: 500px;
   left: ${(props) => (props.isSidebarOpen ? "0" : "-520px")};
   border-right: 5px solid #e9eaeb;
   height: 100%;
+  background: white;
   .rstcustom__rowContents {
     box-shadow: none;
     background-color: transparent;
